@@ -1,15 +1,8 @@
 -module(sg_cli).
 -export([main/1]).
 
-main(["compile" | Args]) ->
-    {File, Opts} = parse_compile_args(Args),
-    case sg_compiler:compile_file(File, Opts) of
-        {ok, Beam}      -> io:format("Compiled: ~s~n", [Beam]);
-        {error, Reason} -> fail(Reason)
-    end;
-
 main(["run" | Args]) ->
-    {File, _Opts} = parse_compile_args(Args),
+    {File, _Opts} = parse_args(Args),
     TmpDir = tmp_dir(),
     case sg_compiler:compile_file(File, [{outdir, TmpDir}]) of
         {ok, _Beam} ->
@@ -21,14 +14,23 @@ main(["run" | Args]) ->
     end;
 
 main(["check" | Args]) ->
-    {File, _Opts} = parse_compile_args(Args),
+    {File, _Opts} = parse_args(Args),
     case sg_compiler:inspect_file(File) of
         {ok, _AST, _Src} -> io:format("OK~n");
         {error, Reason}  -> fail(Reason)
     end;
 
+main(["build" | Args]) ->
+    {File, Opts} = parse_args(Args),
+    OutDir = proplists:get_value(outdir, Opts, filename:dirname(File)),
+    case sg_compiler:compile_file(File, [{outdir, OutDir}]) of
+        {ok, Beam}      -> io:format("~s~n", [Beam]);
+        {error, Reason} -> fail(Reason)
+    end;
+
+%% Developer shortcut — not in the public toolchain spec
 main(["inspect" | Args]) ->
-    {File, _Opts} = parse_compile_args(Args),
+    {File, _Opts} = parse_args(Args),
     case sg_compiler:inspect_file(File) of
         {ok, AST, ErlSrc} ->
             io:format("=== AST ===~n~p~n~n=== Generated Erlang ===~n~s~n",
@@ -39,20 +41,26 @@ main(["inspect" | Args]) ->
 
 main(_) ->
     io:format(
-        "Seagrass compiler v0.1~n"
+        "Seagrass ~s~n"
+        "~n"
         "Usage:~n"
-        "  sgc compile <file.sg> [-o <outdir>]~n"
-        "  sgc run     <file.sg>~n"
-        "  sgc check   <file.sg>~n"
-        "  sgc inspect <file.sg>~n"
+        "  sg run   <file.sg>            compile and execute~n"
+        "  sg check <file.sg>            parse and validate only~n"
+        "  sg build <file.sg> [-o <dir>] compile to .beam~n"
+        "~n"
+        "Developer:~n"
+        "  sg inspect <file.sg>          print AST and generated Erlang~n",
+        [version()]
     ),
     halt(1).
 
-parse_compile_args([File | Rest]) ->
+%% --------------------------------------------------------------------------
+
+parse_args([File | Rest]) ->
     Opts = parse_opts(Rest, []),
     {File, Opts};
-parse_compile_args([]) ->
-    io:format("Error: no input file~n"),
+parse_args([]) ->
+    io:format("sg: no input file~n"),
     halt(1).
 
 parse_opts(["-o", Dir | Rest], Acc) -> parse_opts(Rest, [{outdir, Dir} | Acc]);
@@ -60,18 +68,20 @@ parse_opts([_ | Rest], Acc)         -> parse_opts(Rest, Acc);
 parse_opts([], Acc)                  -> Acc.
 
 fail({read_file, R}) ->
-    io:format("Error reading file: ~p~n", [R]), halt(1);
+    io:format("sg: cannot read file: ~p~n", [R]), halt(1);
 fail({lex_error, F, L, M}) ->
-    io:format("~s:~w: lexer error: ~s~n", [F, L, M]), halt(1);
+    io:format("~s:~w: ~s~n", [F, L, M]), halt(1);
 fail({parse_error, F, L, M}) ->
-    io:format("~s:~w: parse error: ~s~n", [F, L, M]), halt(1);
+    io:format("~s:~w: ~s~n", [F, L, M]), halt(1);
 fail({erlang_compile, Errs}) ->
-    [io:format("Erlang compile error: ~p~n", [E]) || E <- Errs], halt(1);
+    [io:format("sg: internal compile error: ~p~n", [E]) || E <- Errs], halt(1);
 fail(Other) ->
-    io:format("Error: ~p~n", [Other]), halt(1).
+    io:format("sg: ~p~n", [Other]), halt(1).
 
 tmp_dir() ->
     Base = os:getenv("TMPDIR", "/tmp"),
     Dir  = filename:join(Base, "seagrass"),
     filelib:ensure_dir(filename:join(Dir, "x")),
     Dir.
+
+version() -> "v0.1.0".

@@ -6,6 +6,7 @@ compile_file(File) ->
 
 compile_file(File, Opts) ->
     OutDir = proplists:get_value(outdir, Opts, filename:dirname(File)),
+    ok = filelib:ensure_dir(filename:join(OutDir, "x")),
     case read_and_parse(File) of
         {ok, AST} ->
             ModName   = filename_to_module(File),
