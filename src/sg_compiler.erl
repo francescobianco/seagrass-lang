@@ -58,16 +58,44 @@ lex_and_parse(Source, File) ->
             case Filtered of
                 [] -> {ok, {program, []}};
                 _  ->
-                    case sg_parser:parse(Filtered) of
-                        {ok, AST} ->
-                            {ok, AST};
-                        {error, {Line, sg_parser, Msg}} ->
-                            {error, {parse_error, File, Line, lists:flatten(Msg)}}
+                    case check_trailing_comma(Filtered) of
+                        {error, Line} ->
+                            Msg = "unexpected ',': expected a statement, ';', or newline after ','",
+                            {error, {parse_error, File, Line, Msg}};
+                        ok ->
+                            case sg_parser:parse(Filtered) of
+                                {ok, AST} ->
+                                    {ok, AST};
+                                {error, {Line, sg_parser, Msg}} ->
+                                    {error, {parse_error, File, Line, lists:flatten(Msg)}}
+                            end
                     end
             end;
         {error, {Line, sg_lexer, Msg}, _} ->
             {error, {lex_error, File, Line, lists:flatten(Msg)}}
     end.
+
+%% A comma immediately before a newline or at end-of-tokens is a syntax error.
+%% Commas inside argument lists (inside parentheses) are not checked here
+%% because the paren depth collapses before a newline can follow a comma at
+%% the arg level in valid Seagrass source.
+check_trailing_comma(Tokens) ->
+    check_trailing_comma(Tokens, 0).
+
+check_trailing_comma([], _Depth) ->
+    ok;
+check_trailing_comma([{comma, Line}], _Depth) ->
+    %% comma is the very last token (trailing newlines already stripped)
+    {error, Line};
+check_trailing_comma([{comma, Line}, {newline, _} | _], 0) ->
+    %% comma followed by a newline at statement level
+    {error, Line};
+check_trailing_comma([{lparen, _} | Rest], Depth) ->
+    check_trailing_comma(Rest, Depth + 1);
+check_trailing_comma([{rparen, _} | Rest], Depth) ->
+    check_trailing_comma(Rest, max(0, Depth - 1));
+check_trailing_comma([_ | Rest], Depth) ->
+    check_trailing_comma(Rest, Depth).
 
 strip_boundary_newlines(Tokens) ->
     T1 = lists:dropwhile(fun({newline, _}) -> true; (_) -> false end, Tokens),
