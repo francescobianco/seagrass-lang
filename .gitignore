@@ -12,9 +12,21 @@ rebar.lock
 /.seagrass-toolchain.mk
 
 # Editor
-.idea/
+.idea/*
+!.idea/.gitignore
+!.idea/modules.xml
+!.idea/seagrass-lang.iml
+!.idea/vcs.xml
+!.idea/textmate.xml
+!.idea/textmate/
+!.idea/textmate/**
+!.idea/seagrass-syntax.md
 *.iml
-.vscode/
+!.idea/seagrass-lang.iml
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+!.vscode/seagrass-syntax.md
 
 # OS
 .DS_Store

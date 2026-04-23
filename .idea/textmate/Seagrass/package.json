@@ -1,0 +1,26 @@
+{
+  "name": "seagrass",
+  "displayName": "Seagrass",
+  "version": "0.1.0",
+  "description": "TextMate grammar for Seagrass files",
+  "engines": {
+    "vscode": "^1.0.0"
+  },
+  "contributes": {
+    "languages": [
+      {
+        "id": "seagrass",
+        "aliases": ["Seagrass", "seagrass"],
+        "extensions": [".sg"],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "seagrass",
+        "scopeName": "source.seagrass",
+        "path": "./syntaxes/seagrass.tmLanguage.json"
+      }
+    ]
+  }
+}
