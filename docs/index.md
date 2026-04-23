@@ -33,6 +33,7 @@ io.print("end")                                // sequential — waits for both
 | **Import system** | [import-system.md](import-system.md) | ✅ parsing done |
 | **Variables** | [variables.md](variables.md) | 🔲 planned |
 | **Arrays** | [arrays.md](arrays.md) | 🔲 planned |
+| **sizeof operator** | [sizeof.md](sizeof.md) | 🔲 planned |
 | **For loop** | [for-loop.md](for-loop.md) | 🔲 planned |
 | **String interpolation** | [string-interpolation.md](string-interpolation.md) | 🔲 planned |
 | **Functions** | [functions.md](functions.md) | 🔲 planned |

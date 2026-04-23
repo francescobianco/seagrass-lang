@@ -33,12 +33,26 @@ all_errors = invoice_errors + email_errors
 // all_errors has all elements of invoice_errors followed by email_errors
 ```
 
-## Operations
+## Measuring size
+
+The `sizeof(...)` operator returns the number of elements in an array (and in
+general measures the "size" of various types — more cases to be defined).
+Arrays do **not** expose a `.length()` method or any other dot-methods.
+
+```seagrass
+n = sizeof(errors)
+io.print("$d errors found" << n)
+```
+
+`sizeof` is a language-level operator, not a function call. It works on
+arrays, strings, and other types that have a notion of size.
+
+## Other operations
 
 | Operation | Syntax | Description |
 |---|---|---|
 | Concatenation | `a + b` | New array with elements of `a` then `b` |
-| Length | `a.length()` | Number of elements |
+| Size | `sizeof(a)` | Number of elements |
 | Map | `a.map(f)` | Apply `f` to each element, return new array |
 | Filter | `a.filter(p)` | Keep elements where predicate `p` is true |
 | Reduce | `a.reduce(f, init)` | Fold `f` over elements, starting with `init` |
@@ -63,5 +77,6 @@ A ++ B
 |---|---|
 | Array literal `[...]` | 🔲 planned |
 | Concatenation `+` | 🔲 planned |
-| `.length()`, `.map()`, `.filter()`, `.reduce()` | 🔲 planned |
+| `sizeof(a)` | 🔲 planned |
+| `.map()`, `.filter()`, `.reduce()` | 🔲 planned |
 | Range literal `1..10` | 🔲 planned |
