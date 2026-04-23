@@ -1,0 +1,32 @@
+import io
+import onboarding
+import kyc
+import bureau
+import income
+import risk
+import legal
+import offers
+import notifications
+
+io.print("loan underwriting started")
+
+onboarding.collect_application()
+
+{
+    kyc.verify_identity()
+    kyc.verify_documents()
+}, {
+    bureau.pull_credit_report()
+    income.verify_employment()
+}
+
+risk.compute_score()
+
+{
+    legal.generate_disclosures()
+    offers.build_offer()
+}, {
+    notifications.send_status_update()
+}
+
+io.print("loan underwriting completed")

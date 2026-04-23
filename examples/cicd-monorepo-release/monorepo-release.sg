@@ -1,0 +1,43 @@
+import io
+import git
+import deps
+import lint
+import test
+import build
+import security
+import publish
+import deploy
+import notify
+
+io.print("monorepo release started")
+
+git.checkout_main()
+deps.restore()
+
+{
+    lint.backend()
+    test.backend_unit()
+}, {
+    lint.frontend()
+    test.frontend_unit()
+}, {
+    security.sast_scan()
+    security.dependency_scan()
+}
+
+{
+    build.backend_artifact()
+    publish.backend_image()
+}, {
+    build.frontend_bundle()
+    publish.frontend_assets()
+}
+
+{
+    deploy.staging()
+    test.smoke_staging()
+}, {
+    notify.release_channel()
+}
+
+io.print("monorepo release completed")

@@ -1,0 +1,33 @@
+import io
+import intake
+import customer
+import inventory
+import pricing
+import fraud
+import payment
+import fulfillment
+import notifications
+import analytics
+
+io.print("order fulfillment started")
+
+intake.receive_order()
+customer.load_profile()
+
+{
+    inventory.reserve_items()
+    pricing.freeze_quote()
+}, {
+    fraud.screen_order()
+    payment.authorize()
+}
+
+{
+    fulfillment.create_pick_list()
+    fulfillment.schedule_shipment()
+}, {
+    notifications.send_order_confirmation()
+    analytics.record_conversion()
+}
+
+io.print("order fulfillment completed")

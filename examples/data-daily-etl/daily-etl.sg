@@ -1,0 +1,36 @@
+import io
+import extract
+import quality
+import normalize
+import enrich
+import warehouse
+import lineage
+import alerts
+
+io.print("daily etl started")
+
+{
+    extract.crm()
+    quality.crm_raw()
+}, {
+    extract.billing()
+    quality.billing_raw()
+}, {
+    extract.support()
+    quality.support_raw()
+}
+
+normalize.unify_customer_keys()
+
+{
+    enrich.join_dimensions()
+    enrich.compute_business_metrics()
+}, {
+    lineage.capture_metadata()
+    quality.final_dataset()
+}
+
+warehouse.load_fact_tables()
+alerts.send_pipeline_report()
+
+io.print("daily etl completed")

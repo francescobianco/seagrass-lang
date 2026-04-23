@@ -44,6 +44,34 @@ io.print("end")
 In that program, `io.print("left")` runs in parallel with the block on the
 right. Inside the block, `right-1` and `right-2` run sequentially.
 
+## Example Collection
+
+Seagrass is most useful when the problem already looks like a workflow. The
+repository includes a growing set of examples that model the kinds of flows
+you would normally describe in BPM tools, CI/CD systems, or orchestrators such
+as Airflow.
+
+Business logic:
+
+- [Hello World](examples/hello-world/hello-world.sg)
+- [Basic Workflow](examples/basic-workflow/basic-workflow.sg)
+- [Order Fulfillment](examples/business-order-fulfillment/order-fulfillment.sg)
+- [Loan Underwriting](examples/business-loan-underwriting/loan-underwriting.sg)
+
+CI/CD:
+
+- [Monorepo Release Pipeline](examples/cicd-monorepo-release/monorepo-release.sg)
+- [Blue-Green Deployment](examples/cicd-blue-green-deploy/blue-green-deploy.sg)
+
+Data pipelines:
+
+- [Daily ETL Pipeline](examples/data-daily-etl/daily-etl.sg)
+- [Feature Engineering Pipeline](examples/data-feature-pipeline/feature-pipeline.sg)
+
+Full index:
+
+- [examples/README.md](examples/README.md)
+
 ## Comment syntax
 
 Seagrass supports three comment styles:

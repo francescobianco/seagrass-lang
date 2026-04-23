@@ -1,0 +1,35 @@
+import io
+import sources
+import features
+import training
+import validation
+import registry
+import serving
+import monitoring
+
+io.print("feature pipeline started")
+
+{
+    sources.pull_events()
+    features.session_features()
+}, {
+    sources.pull_transactions()
+    features.payment_features()
+}, {
+    sources.pull_profiles()
+    features.customer_features()
+}
+
+features.build_training_set()
+
+{
+    training.fit_candidate_model()
+    validation.evaluate_candidate_model()
+}, {
+    registry.version_feature_set()
+    monitoring.snapshot_data_drift()
+}
+
+serving.publish_online_features()
+
+io.print("feature pipeline completed")

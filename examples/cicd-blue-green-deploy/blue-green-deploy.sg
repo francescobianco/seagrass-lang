@@ -1,0 +1,36 @@
+import io
+import build
+import registry
+import infra
+import deploy
+import traffic
+import observe
+import rollback
+import notify
+
+io.print("blue green deployment started")
+
+build.application()
+registry.push_image()
+infra.prepare_green_environment()
+
+{
+    deploy.release_green()
+    observe.run_health_checks()
+}, {
+    observe.warm_caches()
+    observe.prime_background_jobs()
+}
+
+traffic.shift_canary()
+observe.verify_canary_metrics()
+traffic.shift_full()
+
+{
+    observe.capture_release_snapshot()
+    notify.deployment_success()
+}, {
+    rollback.keep_blue_on_standby()
+}
+
+io.print("blue green deployment completed")
