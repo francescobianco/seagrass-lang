@@ -3,10 +3,13 @@ _build/
 .rebar3/
 *.beam
 erl_crash.dump
+rebar3.crashdump
+*.crashdump
 rebar.lock
 
 # rebar3 binary (downloaded locally)
 /rebar3
+/.seagrass-toolchain.mk
 
 # Editor
 .idea/

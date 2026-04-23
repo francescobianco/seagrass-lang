@@ -42,6 +42,26 @@ Prints the path of the produced `.beam` on success.
 These commands are not part of the standard workflow but are useful during
 language development and debugging.
 
+On Ubuntu you can bootstrap the local toolchain with:
+
+```bash
+make dev-ubuntu
+```
+
+This installs `erlang`, `rebar3`, `make`, `git`, and `curl` from `apt`.
+It also writes a repo-local `.seagrass-toolchain.mk` that pins this project to
+`/usr/bin/erl`, `/usr/bin/rebar3`, and the Erlang system bin directory, so later `make build` and
+`make install` keep using the Ubuntu system toolchain even if your shell `PATH`
+contains other Erlang installations.
+At the end it runs a self-check:
+
+- detects the installed Erlang/OTP release
+- verifies that `rebar3` starts correctly with that OTP
+- runs a real `rebar3 compile`
+
+If any of those checks fail, the target exits with an explicit error telling
+you that the machine cannot build Seagrass.
+
 ```bash
 sg inspect <file.sg>
 ```
