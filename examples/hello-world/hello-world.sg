@@ -1,0 +1,14 @@
+
+import io
+
+
+// start here
+io.print("start")
+
+// these are parallel run
+io.print("Hello"), io.print("World!");
+
+// run after parallel are both completed
+io.print("end")
+
+

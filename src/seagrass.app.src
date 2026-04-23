@@ -1,0 +1,8 @@
+{application, seagrass, [
+    {description, "Seagrass language compiler for BEAM"},
+    {vsn, "0.1.0"},
+    {registered, []},
+    {applications, [kernel, stdlib]},
+    {env, []},
+    {modules, []}
+]}.

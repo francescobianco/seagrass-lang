@@ -1,0 +1,60 @@
+// Standard library — io module
+// Handles console input/output and file system access.
+
+
+// print(message) — write a line to stdout
+function print(message) {
+    __STDOUT__.write(message)
+}
+
+
+// ask(prompt) — print a prompt and read one line from stdin
+// equivalent of Python's input()
+function ask(prompt) {
+    __STDOUT__.write(prompt)
+    return __STDIN__.read_line()
+}
+
+
+// file(path) — return a lazy File handle
+// the file is not opened on disk until a method is called on the handle
+function file(path) {
+    return new File(path)
+}
+
+
+// File — lazy file handle
+// open() is called by the runtime the first time a method is invoked
+class File {
+    path = ""
+
+    // append one line to the file (creates the file if it does not exist)
+    function append(text) {
+        __FS__.open(self.path, "append").write(text)
+    }
+
+    // overwrite the file with text
+    function write(text) {
+        __FS__.open(self.path, "write").write(text)
+    }
+
+    // read the entire file as a string
+    function read() {
+        return __FS__.open(self.path, "read").read_all()
+    }
+
+    // read the file as an array of lines
+    function read_lines() {
+        return __FS__.open(self.path, "read").read_lines()
+    }
+
+    // check whether the file exists on disk
+    function exists() {
+        return __FS__.exists(self.path)
+    }
+
+    // delete the file
+    function delete() {
+        __FS__.delete(self.path)
+    }
+}

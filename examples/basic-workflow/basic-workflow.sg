@@ -1,0 +1,19 @@
+
+import io
+import send_invoice
+import send_email
+
+invoice_errors = send_invoice(), email_errors = send_email();
+
+// gli array si possono sommare di fatto sarebbe la concatenazione
+// il for con "by" permette di avere un contatore quando serve il "in" rappresenta il nome dell'ogetto uno a uno preso dall'array
+for (error in invoice_errors + email_errors by index) {
+    // il '<<' e un operatore particolare, è la stringa formattata e alla sua sinistra ce la stringa che puo essere pure indiretta quindi contenuta
+    // in una variabile mentre a destra ce la lista degli ogetti da sostituire nel formatto
+    io.print("- $d. $s" << index+1, error)
+}
+
+
+
+
+
