@@ -1,0 +1,6 @@
+// Function call with no arguments.
+import send_invoice
+import send_email
+
+send_invoice.run()
+send_email.run()

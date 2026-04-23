@@ -1,0 +1,10 @@
+// Two sequential blocks can run in parallel.
+import io
+
+{
+    io.print("left-1")
+    io.print("left-2")
+}, {
+    io.print("right-1")
+    io.print("right-2")
+}

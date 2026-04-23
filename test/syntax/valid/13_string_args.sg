@@ -1,0 +1,6 @@
+// String literals as function arguments.
+import io
+
+io.print("hello, world")
+io.print("with spaces and punctuation: !@#")
+io.print("")

@@ -1,0 +1,5 @@
+// expect-error: parse error
+// A line cannot start with a comma.
+import io
+
+, io.print("a")

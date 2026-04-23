@@ -35,6 +35,8 @@ gen_expr({call, io, print, Args}) ->
 %% io.println is an alias
 gen_expr({call, io, println, Args}) ->
     gen_expr({call, io, print, Args});
+gen_expr({block, Stmts}) ->
+    "begin\n        " ++ gen_stmts(Stmts) ++ "\n    end";
 %% Generic Erlang call: mod.fun(args) → mod:fun(args)
 gen_expr({call, Mod, Fun, Args}) ->
     ArgsStr = string:join([gen_arg(A) || A <- Args], ", "),

@@ -1,0 +1,7 @@
+// expect-error: parse error
+// A bare dot is not a valid statement.
+import io
+
+io.print("before")
+.
+io.print("after")

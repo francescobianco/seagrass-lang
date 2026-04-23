@@ -6,10 +6,10 @@
 %%   comma    = argument separator inside function calls (resolved by context)
 
 Nonterminals
-    program stmts newlines stmt parallel_group expr args arg.
+    program stmts newlines stmt parallel_group expr block args arg.
 
 Terminals
-    newline lparen rparen comma dot import ident string integer float.
+    newline lparen rparen lbrace rbrace comma dot import ident string integer float.
 
 Rootsymbol program.
 
@@ -38,6 +38,17 @@ expr -> ident dot ident lparen rparen :
     {call, v('$1'), v('$3'), []}.
 expr -> ident dot ident lparen args rparen :
     {call, v('$1'), v('$3'), '$5'}.
+expr -> block :
+    '$1'.
+
+block -> lbrace newlines stmts newlines rbrace :
+    {block, '$3'}.
+block -> lbrace newlines stmts rbrace :
+    {block, '$3'}.
+block -> lbrace stmts newlines rbrace :
+    {block, '$2'}.
+block -> lbrace stmts rbrace :
+    {block, '$2'}.
 
 args -> arg           : ['$1'].
 args -> args comma arg : '$1' ++ ['$3'].

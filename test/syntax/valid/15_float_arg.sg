@@ -1,0 +1,6 @@
+// Float literal as function argument.
+import io
+
+io.write(3.14)
+io.write(0.0)
+io.write(1.5)

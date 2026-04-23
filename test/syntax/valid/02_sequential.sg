@@ -1,0 +1,6 @@
+// Multiple statements separated by newlines run in sequence.
+import io
+
+io.print("one")
+io.print("two")
+io.print("three")

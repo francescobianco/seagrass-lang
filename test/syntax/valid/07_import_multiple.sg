@@ -1,0 +1,6 @@
+// Multiple imports, each on its own line.
+import io
+import send_invoice
+import send_email
+
+io.print("imports loaded")

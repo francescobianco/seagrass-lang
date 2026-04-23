@@ -1,0 +1,11 @@
+// A block can contain nested parallel branches composed of blocks.
+import io
+
+io.print("root"), {
+    {
+        io.print("branch-1a");
+        io.print("branch-1b")
+    }, {
+        io.print("branch-2")
+    }
+}

@@ -1,0 +1,4 @@
+// Semicolon is an alias for newline — both are sequential separators.
+import io
+
+io.print("a"); io.print("b"); io.print("c")

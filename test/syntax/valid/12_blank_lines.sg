@@ -1,0 +1,13 @@
+// Multiple consecutive blank lines between statements are allowed.
+// They are treated as a single newline separator.
+import io
+
+
+
+io.print("after many blank lines")
+
+
+
+io.print("after more blank lines")
+
+

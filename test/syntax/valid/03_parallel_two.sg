@@ -1,0 +1,4 @@
+// Two calls on the same line separated by comma run in parallel.
+import io
+
+io.print("a"), io.print("b")

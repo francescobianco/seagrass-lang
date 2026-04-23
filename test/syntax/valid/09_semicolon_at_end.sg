@@ -1,0 +1,5 @@
+// Optional trailing semicolon on a line — equivalent to a newline.
+import io
+
+io.print("with semicolon");
+io.print("without semicolon")

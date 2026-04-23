@@ -1,0 +1,5 @@
+// expect-error: unexpected ',': expected a statement, ';', or newline after ','
+// Even a single-call line must not end with a comma.
+import io
+
+io.print("alone"),

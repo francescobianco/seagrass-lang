@@ -1,0 +1,5 @@
+// expect-error: illegal characters
+// The '@' character is not part of the Seagrass alphabet.
+import io
+
+io.print("hello") @ io.print("world")

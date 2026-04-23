@@ -1,0 +1,5 @@
+// expect-error: parse error
+// Missing closing parenthesis.
+import io
+
+io.print("hello"

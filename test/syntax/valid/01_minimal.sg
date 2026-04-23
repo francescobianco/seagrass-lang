@@ -1,0 +1,4 @@
+// Single statement — the smallest possible program.
+import io
+
+io.print("hello")

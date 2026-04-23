@@ -1,0 +1,7 @@
+// expect-error: unexpected ',': expected a statement, ';', or newline after ','
+// Trailing comma before a blank line — the blank line counts as a newline.
+import io
+
+io.print("a"), io.print("b"),
+
+io.print("c")

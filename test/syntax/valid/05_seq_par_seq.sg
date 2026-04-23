@@ -1,0 +1,7 @@
+// Sequential → parallel group → sequential.
+// The parallel line waits for all branches before the next line starts.
+import io
+
+io.print("start")
+io.print("branch_a"), io.print("branch_b")
+io.print("end")

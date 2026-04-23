@@ -1,0 +1,4 @@
+// Three calls in parallel on one line.
+import io
+
+io.print("x"), io.print("y"), io.print("z")

@@ -1,0 +1,6 @@
+// Multiple arguments in a single function call.
+// Commas inside parentheses are arg separators, not parallel operators.
+import io
+
+io.print("a", "b", "c")
+io.write(1, 2, 3)

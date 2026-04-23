@@ -1,0 +1,7 @@
+
+
+// Leading and trailing blank lines in the file are ignored.
+import io
+
+io.print("ok")
+

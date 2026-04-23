@@ -1,0 +1,5 @@
+// expect-error: illegal characters
+// A string literal must be closed on the same line.
+import io
+
+io.print("unterminated

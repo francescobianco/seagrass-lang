@@ -1,0 +1,11 @@
+// Comments can appear between statements without affecting execution.
+import io
+
+// first step
+io.print("step 1")
+
+// second step — two branches in parallel
+io.print("step 2a"), io.print("step 2b")
+
+// third step
+io.print("step 3")

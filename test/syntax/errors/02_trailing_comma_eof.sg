@@ -1,0 +1,5 @@
+// expect-error: unexpected ',': expected a statement, ';', or newline after ','
+// A comma as the very last token in the file is a syntax error.
+import io
+
+io.print("a"), io.print("b"),

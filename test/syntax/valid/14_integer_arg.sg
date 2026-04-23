@@ -1,0 +1,6 @@
+// Integer literal as function argument.
+import io
+
+io.write(42)
+io.write(0)
+io.write(999)

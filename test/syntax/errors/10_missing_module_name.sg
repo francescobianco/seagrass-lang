@@ -1,0 +1,5 @@
+// expect-error: parse error
+// A call must start with a module name before the dot.
+import io
+
+.print("hello")

@@ -1,0 +1,4 @@
+// Single import declaration.
+import io
+
+io.print("ok")

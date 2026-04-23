@@ -1,0 +1,5 @@
+// expect-error: parse error
+// A dot must be followed by a function name.
+import io
+
+io.("hello")

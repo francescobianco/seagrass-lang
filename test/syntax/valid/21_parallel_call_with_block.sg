@@ -1,0 +1,7 @@
+// A single call can run in parallel with a sequential block.
+import io
+
+io.print("a"), {
+    io.print("b")
+    io.print("c")
+}

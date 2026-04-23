@@ -1,0 +1,5 @@
+// expect-error: parse error
+// Two consecutive commas at statement level.
+import io
+
+io.print("a"),, io.print("b")

@@ -1,0 +1,5 @@
+// Comma inside args must not be confused with the parallel comma.
+// Both calls run in parallel; each call has its own comma-separated args.
+import io
+
+io.print("hello", "world"), io.print("foo", "bar")
