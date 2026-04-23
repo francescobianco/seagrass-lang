@@ -52,7 +52,8 @@ read_and_parse(File) ->
     end.
 
 lex_and_parse(Source, File) ->
-    case sg_lexer:string(Source) of
+    Sanitized = strip_comments(Source),
+    case sg_lexer:string(Sanitized) of
         {ok, Tokens, _EndLine} ->
             Filtered = strip_boundary_newlines(Tokens),
             case Filtered of
@@ -113,3 +114,37 @@ tmp_dir() ->
     Dir  = filename:join(Base, "seagrass"),
     filelib:ensure_dir(filename:join(Dir, "x")),
     Dir.
+
+strip_comments(Source) ->
+    lists:reverse(strip_comments(Source, normal, [])).
+
+strip_comments([], _State, Acc) ->
+    Acc;
+strip_comments([$"|Rest], normal, Acc) ->
+    strip_comments(Rest, string, [$"|Acc]);
+strip_comments([$/, $/ | Rest], normal, Acc) ->
+    strip_comments(Rest, line_comment, Acc);
+strip_comments([$/, $* | Rest], normal, Acc) ->
+    strip_comments(Rest, block_comment, Acc);
+strip_comments([$# | Rest], normal, Acc) ->
+    strip_comments(Rest, hash_comment, Acc);
+strip_comments([Char | Rest], normal, Acc) ->
+    strip_comments(Rest, normal, [Char | Acc]);
+strip_comments([$"|Rest], string, Acc) ->
+    strip_comments(Rest, normal, [$"|Acc]);
+strip_comments([Char | Rest], string, Acc) ->
+    strip_comments(Rest, string, [Char | Acc]);
+strip_comments([$\n | Rest], line_comment, Acc) ->
+    strip_comments(Rest, normal, [$\n | Acc]);
+strip_comments([_ | Rest], line_comment, Acc) ->
+    strip_comments(Rest, line_comment, Acc);
+strip_comments([$\n | Rest], hash_comment, Acc) ->
+    strip_comments(Rest, normal, [$\n | Acc]);
+strip_comments([_ | Rest], hash_comment, Acc) ->
+    strip_comments(Rest, hash_comment, Acc);
+strip_comments([$*, $/ | Rest], block_comment, Acc) ->
+    strip_comments(Rest, normal, Acc);
+strip_comments([$\n | Rest], block_comment, Acc) ->
+    strip_comments(Rest, block_comment, [$\n | Acc]);
+strip_comments([_ | Rest], block_comment, Acc) ->
+    strip_comments(Rest, block_comment, Acc).

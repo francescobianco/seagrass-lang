@@ -1,0 +1,10 @@
+// Standard library — csv module
+// CSV parsing and serialization helpers.
+
+function parse(text) {
+    return __CSV__.parse(text)
+}
+
+function stringify(rows) {
+    return __CSV__.stringify(rows)
+}

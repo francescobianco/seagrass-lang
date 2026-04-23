@@ -1,0 +1,8 @@
+# A file with hash comments should parse correctly.
+import io
+
+# first step
+io.print("hello")
+
+# second step
+io.print("world")

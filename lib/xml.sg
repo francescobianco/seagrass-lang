@@ -1,0 +1,10 @@
+// Standard library — xml module
+// XML parsing and serialization helpers.
+
+function parse(text) {
+    return __XML__.parse(text)
+}
+
+function stringify(node) {
+    return __XML__.stringify(node)
+}

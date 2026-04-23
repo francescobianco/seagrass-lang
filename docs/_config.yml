@@ -1,0 +1,20 @@
+title: "seagrass"
+remote_theme: "just-the-docs/just-the-docs@main"
+url: "https://yafb.net/seagrass-lang/"
+
+plugins:
+  - jekyll-sitemap
+
+aux_links:
+  "<img src='https://raw.githubusercontent.com/javanile/mush/refs/heads/main/docs/assets/img/github.svg'/>":
+    - "https://github.com/francescobianco/seagrass-lang"
+
+footer_content: >
+  © 2024 Francesco Bianco. All rights reserved.
+  <script>document.querySelector('div.site-header a').innerHTML = '🪸 seagrass<sup>ALPHA</sup>';</script>  
+
+markdown: kramdown
+
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge

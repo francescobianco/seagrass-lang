@@ -1,0 +1,10 @@
+// Standard library — json module
+// JSON encoding and decoding helpers.
+
+function encode(value) {
+    return __JSON__.encode(value)
+}
+
+function decode(text) {
+    return __JSON__.decode(text)
+}

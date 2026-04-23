@@ -1,0 +1,9 @@
+/* A block comment can appear before code.
+   It may span multiple lines. */
+import io
+
+io.print("alpha")
+
+/* A block comment can also appear
+   between sequential statements. */
+io.print("beta")

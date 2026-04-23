@@ -8,6 +8,9 @@ The Seagrass standard library is written in Seagrass itself. Each module is a
 | Module | File | Description |
 |---|---|---|
 | `io` | [io.md](io.md) | Console I/O and file system access |
+| `json` | [json.md](json.md) | JSON encoding and decoding |
+| `xml` | [xml.md](xml.md) | XML parsing and serialization |
+| `csv` | [csv.md](csv.md) | CSV parsing and serialization |
 
 ## How the stdlib works
 

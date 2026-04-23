@@ -1,3 +1,0 @@
-// expect-error: illegal characters
-// The '#' character is not part of the Seagrass alphabet.
-# this is not a comment
