@@ -7,47 +7,48 @@ nav_order: 30
 
 # Branching
 
-Seagrass supporta branching composto usando `,` per il parallelo e `{ ... }`
-per raggruppare un sotto-programma.
+Seagrass supports compound branching using `,` for parallel execution and
+`{ ... }` to group a nested sub-program.
 
-## Regole
+## Rules
 
-- Un blocco `{ ... }` contiene statement Seagrass normali.
-- Dentro un blocco, newline e `;` restano separatori sequenziali.
-- Una virgola `,` mette in parallelo le espressioni sullo stesso livello.
-- Un ramo parallelo puo' essere una singola call oppure un blocco annidato.
+- A `{ ... }` block contains ordinary Seagrass statements.
+- Inside a block, newlines and `;` remain sequential separators.
+- A comma `,` runs expressions in parallel at the same nesting level.
+- A parallel branch can be either a single call or a nested block.
 
-## Esempi
+## Examples
 
 ```seagrass
-chiamata1(), {
-    chiamata2()
-    chiamata3()
+call1(), {
+    call2()
+    call3()
 }
 ```
 
-`chiamata1()` gira in parallelo alla sequenza `chiamata2()` poi `chiamata3()`.
+`call1()` runs in parallel with the sequence `call2()` then `call3()`.
 
 ```seagrass
 {
-    chiamata1a()
-    chiamata1b()
+    call1a()
+    call1b()
 }, {
-    chiamata2()
-    chiamata3()
+    call2()
+    call3()
 }
 ```
 
-I due blocchi partono in parallelo; dentro ogni blocco le chiamate restano
-sequenziali.
+The two blocks start in parallel; inside each block the calls remain
+sequential.
 
 ```seagrass
-chiamata1(), {
-    { chiamata2(); chiamata3() }, {
-        chiamata4();
+call1(), {
+    { call2(); call3() }, {
+        call4();
     }
 }
 ```
 
-Il secondo ramo e' un blocco che contiene a sua volta un parallelo tra due
-sotto-rami: il primo e' una sequenza di due call, il secondo e' una call sola.
+The second branch is a block that itself contains a parallel split between two
+sub-branches: the first is a sequence of two calls, the second is a single
+call.

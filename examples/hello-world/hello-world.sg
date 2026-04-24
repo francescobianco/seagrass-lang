@@ -1,14 +1,12 @@
 
 import io
 
-
 // start here
 io.print("start")
 
-// these are parallel run
+// these run in parallel
 io.print("Hello"), io.print("World!");
 
-// run after parallel are both completed
+// this runs after both parallel branches complete
 io.print("end")
-
 

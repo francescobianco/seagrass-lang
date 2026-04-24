@@ -65,23 +65,23 @@ on demand.
 A module can be invoked **as a function** using its name followed by `()`:
 
 ```seagrass
-import miomodulo
+import my_module
 
-miomodulo()
+my_module()
 ```
 
-This executes the **root-level statements** of `miomodulo.sg` — i.e., every
+This executes the **root-level statements** of `my_module.sg` — that is, every
 statement that lives at the top scope of that file, not inside a function or
 class body.
 
-Given `miomodulo.sg`:
+Given `my_module.sg`:
 
 ```seagrass
 hello()
 world()
 ```
 
-Calling `miomodulo()` runs `hello()` then `world()` in sequence, exactly as
+Calling `my_module()` runs `hello()` then `world()` in sequence, exactly as
 if those lines were written inline at the call site.
 
 This makes every `.sg` file implicitly executable: a module is both a
@@ -111,10 +111,10 @@ Compiles to:
 send_invoice:run(Id)
 ```
 
-A direct module call `miomodulo()` compiles to:
+A direct module call `my_module()` compiles to:
 
 ```erlang
-miomodulo:main([])
+my_module:main([])
 ```
 
 where `main/1` is the generated entry-point function that wraps the module's
