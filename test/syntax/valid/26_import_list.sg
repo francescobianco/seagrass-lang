@@ -1,0 +1,4 @@
+// Multiple imports can appear on the same import line.
+import io, git, xml
+
+io.print("imports parsed")

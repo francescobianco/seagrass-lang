@@ -1,3 +1,10 @@
+---
+title: Import System
+layout: default
+parent: Home
+nav_order: 20
+---
+
 # Import System
 
 Bring external modules into the current file's scope.
@@ -6,6 +13,7 @@ Bring external modules into the current file's scope.
 
 ```
 import <module>
+import <module>, <module>, <module>
 import <module>.<submodule>
 import <module>.<function>
 ```
@@ -13,13 +21,16 @@ import <module>.<function>
 ## Description
 
 An `import` declaration makes a module (or a specific symbol inside a module)
-available in the current file. Each import occupies its own line. Multiple
-imports are listed at the top of the file before any executable code.
+available in the current file. You can import one module per line or a
+comma-separated list on a single line. Imports are normally listed at the top
+of the file before any executable code.
 
 ```seagrass
 import io
 import send_invoice
 import send_email
+
+import io, git, xml
 ```
 
 After importing, the module is referenced by its short name:
@@ -111,7 +122,7 @@ root-level statements.
 
 ## Rules
 
-- One module per `import` line.
+- One or more modules can appear on the same `import` line when separated by commas.
 - Importing the same module twice is silently ignored (idempotent).
 - Importing a module that does not exist is a compile-time error *(planned — v2)*.
 
@@ -120,6 +131,7 @@ root-level statements.
 | Feature | Status |
 |---|---|
 | `import name` parsed | ✅ implemented |
+| `import a, b, c` parsed | ✅ implemented |
 | Symbol resolution at call sites | ✅ implemented |
 | Direct module call `module()` | 🔲 planned |
 | Dot-path imports | 🔲 planned |

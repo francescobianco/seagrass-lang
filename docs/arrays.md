@@ -1,3 +1,10 @@
+---
+title: Arrays
+layout: default
+parent: Home
+nav_order: 50
+---
+
 # Arrays
 
 Ordered, zero-indexed collections of values.

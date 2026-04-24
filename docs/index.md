@@ -1,3 +1,10 @@
+---
+title: Home
+layout: default
+nav_order: 1
+has_children: true
+---
+
 # Seagrass Language — Documentation
 
 Seagrass is a language that compiles to BEAM (the Erlang virtual machine).

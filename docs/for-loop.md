@@ -1,3 +1,10 @@
+---
+title: For Loop
+layout: default
+parent: Home
+nav_order: 90
+---
+
 # For Loop
 
 Iterate over a collection.

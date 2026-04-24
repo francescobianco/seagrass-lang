@@ -1,3 +1,10 @@
+---
+title: Variables
+layout: default
+parent: Home
+nav_order: 40
+---
+
 # Variables
 
 Bind a name to a value.

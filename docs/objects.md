@@ -1,3 +1,10 @@
+---
+title: Objects
+layout: default
+parent: Home
+nav_order: 110
+---
+
 # Objects
 
 Instances of classes — values that combine state and behaviour.

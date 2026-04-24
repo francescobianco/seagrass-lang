@@ -1,3 +1,10 @@
+---
+title: xml
+layout: default
+parent: Standard Library
+nav_order: 4
+---
+
 # xml
 
 XML parsing and serialization helpers.

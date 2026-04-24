@@ -1,3 +1,10 @@
+---
+title: Branching
+layout: default
+parent: Home
+nav_order: 30
+---
+
 # Branching
 
 Seagrass supporta branching composto usando `,` per il parallelo e `{ ... }`

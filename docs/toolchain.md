@@ -1,3 +1,10 @@
+---
+title: Toolchain
+layout: default
+parent: Home
+nav_order: 10
+---
+
 # Toolchain
 
 The Seagrass toolchain is a single command: `sg`.

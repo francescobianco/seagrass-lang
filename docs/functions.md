@@ -1,3 +1,10 @@
+---
+title: Functions
+layout: default
+parent: Home
+nav_order: 80
+---
+
 # Functions
 
 Reusable blocks of code that accept parameters and return a value.

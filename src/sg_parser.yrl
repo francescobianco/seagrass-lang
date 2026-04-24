@@ -6,7 +6,7 @@
 %%   comma    = argument separator inside function calls (resolved by context)
 
 Nonterminals
-    program stmts newlines stmt parallel_group expr block args arg.
+    program stmts newlines stmt import_targets parallel_group expr block args arg.
 
 Terminals
     newline lparen rparen lbrace rbrace comma dot import ident string integer float.
@@ -15,14 +15,17 @@ Rootsymbol program.
 
 program -> stmts : {program, '$1'}.
 
-stmts -> stmt              : ['$1'].
-stmts -> stmts newlines stmt : '$1' ++ ['$3'].
+stmts -> stmt                : flatten_stmt('$1').
+stmts -> stmts newlines stmt : '$1' ++ flatten_stmt('$3').
 
 newlines -> newline          : ok.
 newlines -> newlines newline : ok.
 
 %% A stmt is an import declaration OR an expression group (seq/parallel).
-stmt -> import ident : {import, v('$2')}.
+stmt -> import import_targets : '$2'.
+
+import_targets -> ident : [{import, v('$1')}].
+import_targets -> import_targets comma ident : '$1' ++ [{import, v('$3')}].
 
 stmt -> parallel_group :
     case '$1' of
@@ -63,3 +66,6 @@ Erlang code.
 %% Extract the value from a token tuple {Type, Line} or {Type, Line, Value}.
 v({_Type, _Line, Value}) -> Value;
 v({_Type, _Line})        -> undefined.
+
+flatten_stmt(Stmt) when is_list(Stmt) -> Stmt;
+flatten_stmt(Stmt)                    -> [Stmt].

@@ -1,3 +1,10 @@
+---
+title: Classes
+layout: default
+parent: Home
+nav_order: 100
+---
+
 # Classes
 
 Blueprints for creating objects with shared structure and behaviour.

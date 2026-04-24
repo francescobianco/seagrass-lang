@@ -1,0 +1,18 @@
+// Standard library — git module
+// Git command helpers for workflow orchestration.
+
+function clone(repo) {
+    return __GIT__.clone(repo)
+}
+
+function pull() {
+    return __GIT__.pull()
+}
+
+function status() {
+    return __GIT__.status()
+}
+
+function current_branch() {
+    return __GIT__.current_branch()
+}

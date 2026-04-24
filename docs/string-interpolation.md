@@ -1,3 +1,10 @@
+---
+title: String Interpolation
+layout: default
+parent: Home
+nav_order: 70
+---
+
 # String Interpolation
 
 Embed values inside a string using the `<<` operator.

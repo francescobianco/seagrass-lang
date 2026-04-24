@@ -1,3 +1,10 @@
+---
+title: sizeof
+layout: default
+parent: Home
+nav_order: 60
+---
+
 # sizeof
 
 Measure the size of a value.

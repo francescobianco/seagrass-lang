@@ -1,3 +1,10 @@
+---
+title: io
+layout: default
+parent: Standard Library
+nav_order: 1
+---
+
 # io
 
 Console input/output and file system access.
