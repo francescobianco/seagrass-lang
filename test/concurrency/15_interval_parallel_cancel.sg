@@ -1,0 +1,18 @@
+// interval() runs in one parallel branch; another branch cancels it after 2.5 s.
+// Both branches are part of the same parallel group so the join waits for both.
+import io, timer
+
+handle = timer.interval(1, {
+    io.print("tick")
+})
+
+{
+    timer.sleep(2.5)
+    handle.cancel()
+    io.print("cancelled")
+}, {
+    timer.sleep(4)
+    io.print("watcher done")
+}
+
+io.print("flow complete")

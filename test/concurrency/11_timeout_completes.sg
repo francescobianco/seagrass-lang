@@ -1,0 +1,10 @@
+// timeout() wraps a callable; the callable completes within the time limit.
+// Expected: "result" is printed, no timeout error raised.
+import io, timer
+
+timer.timeout(5, {
+    timer.sleep(1)
+    io.print("result")
+})
+
+io.print("done — no timeout")

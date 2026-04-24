@@ -1,0 +1,7 @@
+// Two parallel branches with no sleep run concurrently and join.
+// Expected: "start", then "left" and "right" in any order, then "done"
+import io
+
+io.print("start")
+io.print("left"), io.print("right")
+io.print("done")

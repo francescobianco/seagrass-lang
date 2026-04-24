@@ -1,0 +1,17 @@
+// Three parallel branches with different sleep durations.
+// Expected arrival order: fast → medium → slow
+// All three must complete before "all done" is printed.
+import io, timer
+
+{
+    timer.sleep(3)
+    io.print("slow")
+}, {
+    timer.sleep(1)
+    io.print("fast")
+}, {
+    timer.sleep(2)
+    io.print("medium")
+}
+
+io.print("all done")

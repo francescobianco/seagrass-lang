@@ -1,0 +1,10 @@
+// timeout() wraps a callable that takes longer than the limit.
+// Expected: the callable is cancelled and a timeout error is raised before "too late".
+import io, timer
+
+timer.timeout(1, {
+    timer.sleep(5)
+    io.print("too late")
+})
+
+io.print("this line is unreachable if timeout raises")

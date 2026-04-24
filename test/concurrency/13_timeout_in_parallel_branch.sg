@@ -1,0 +1,16 @@
+// One parallel branch uses timeout; the other runs freely.
+// The slow branch is cancelled by its timeout; the fast branch completes normally.
+// Join after a failed branch propagates the timeout error to the flow.
+import io, timer
+
+{
+    timer.timeout(1, {
+        timer.sleep(4)
+        io.print("slow branch — should not print")
+    })
+}, {
+    timer.sleep(0.5)
+    io.print("fast branch done")
+}
+
+io.print("after join")

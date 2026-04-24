@@ -1,0 +1,13 @@
+// interval() fires a callable every second.
+// A parallel branch cancels the interval after 3.5 s so it fires exactly 3 times.
+// Expected: "tick" printed 3 times, then "interval stopped".
+import io, timer
+
+handle = timer.interval(1, {
+    io.print("tick")
+})
+
+timer.sleep(3.5)
+handle.cancel()
+
+io.print("interval stopped")

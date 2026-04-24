@@ -1,0 +1,7 @@
+// sleep pauses the current branch sequentially.
+// Expected output order: start → wait → end
+import io, timer
+
+io.print("start")
+timer.sleep(1)
+io.print("end")

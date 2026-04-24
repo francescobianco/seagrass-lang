@@ -1,0 +1,16 @@
+// The join point after a parallel group always waits for the slowest branch.
+// "after join" must never appear before "slow done".
+import io, timer
+
+{
+    timer.sleep(5)
+    io.print("slow done")
+}, {
+    timer.sleep(1)
+    io.print("fast done")
+}, {
+    timer.sleep(2)
+    io.print("medium done")
+}
+
+io.print("after join")

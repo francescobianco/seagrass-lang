@@ -1,0 +1,32 @@
+// Standard library — timer module
+// Timing, delays, timeouts, and recurring execution.
+
+
+// sleep(seconds) — pause the current branch for the given number of seconds
+function sleep(seconds) {
+    __TIMER__.sleep(seconds)
+}
+
+
+// timeout(seconds, callable) — run callable; raise an error if it exceeds the time limit
+function timeout(seconds, callable) {
+    return __TIMER__.timeout(seconds, callable)
+}
+
+
+// interval(seconds, callable) — invoke callable repeatedly every seconds
+// returns a handle; call handle.cancel() to stop the loop
+function interval(seconds, callable) {
+    return __TIMER__.interval(seconds, callable)
+}
+
+
+// Handle — cancellable reference returned by interval()
+class Handle {
+    id = ""
+
+    // cancel() — stop the recurring invocation
+    function cancel() {
+        __TIMER__.cancel(self.id)
+    }
+}

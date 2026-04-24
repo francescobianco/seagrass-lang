@@ -1,0 +1,14 @@
+// Left branch sleeps 2 s, right branch sleeps 1 s.
+// Right prints "right done" before left prints "left done".
+// Join happens after both complete, then "joined" is printed.
+import io, timer
+
+{
+    timer.sleep(2)
+    io.print("left done")
+}, {
+    timer.sleep(1)
+    io.print("right done")
+}
+
+io.print("joined")

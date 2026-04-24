@@ -1,0 +1,14 @@
+// Both branches sleep the same duration.
+// "left" and "right" finish at roughly the same time; order is non-deterministic.
+// "joined" is always printed last.
+import io, timer
+
+{
+    timer.sleep(1)
+    io.print("left")
+}, {
+    timer.sleep(1)
+    io.print("right")
+}
+
+io.print("joined")

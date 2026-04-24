@@ -1,0 +1,11 @@
+// A sequential sleep precedes a parallel group.
+// The sleep blocks the entire flow; only after it ends do the branches fan out.
+import io, timer
+
+io.print("before sleep")
+timer.sleep(2)
+io.print("after sleep — fanning out")
+
+io.print("branch-a"), io.print("branch-b"), io.print("branch-c")
+
+io.print("all branches joined")

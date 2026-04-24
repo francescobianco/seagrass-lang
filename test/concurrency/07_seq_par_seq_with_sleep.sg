@@ -1,0 +1,16 @@
+// Sequential step, then a parallel group where branches sleep, then sequential step.
+// "start" first, then parallel branches run (right finishes before left),
+// finally "end" after the join.
+import io, timer
+
+io.print("start")
+
+{
+    timer.sleep(3)
+    io.print("slow branch")
+}, {
+    timer.sleep(1)
+    io.print("fast branch")
+}
+
+io.print("end")

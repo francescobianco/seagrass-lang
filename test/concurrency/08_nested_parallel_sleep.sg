@@ -1,0 +1,20 @@
+// Nested parallel groups with sleep.
+// Outer left branch contains two inner parallel sub-branches.
+// Inner-fast finishes before inner-slow, but outer join waits for both.
+// Outer right has no sleep; it completes while the left group is still running.
+import io, timer
+
+{
+    {
+        timer.sleep(2)
+        io.print("inner-slow")
+    }, {
+        timer.sleep(1)
+        io.print("inner-fast")
+    }
+    io.print("outer-left done")
+}, {
+    io.print("outer-right done")
+}
+
+io.print("all done")
