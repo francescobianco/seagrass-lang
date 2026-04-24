@@ -11,7 +11,7 @@ aux_links:
 
 footer_content: >
   © 2024 Francesco Bianco. All rights reserved.
-  <script>document.querySelector('div.site-header a').innerHTML = '🪸 seagrass<sup>ALPHA</sup>';</script>  
+  <script>document.querySelector('div.site-header a').innerHTML = '🪸 seagrass';</script>  
 
 markdown: kramdown
 

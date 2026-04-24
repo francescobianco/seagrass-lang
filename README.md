@@ -15,11 +15,24 @@ usually described as ordered steps with occasional forks and joins, but general
 purpose languages tend to hide that structure inside libraries, callbacks, job
 queues, or ad-hoc process orchestration.
 
+It also comes from a more specific lineage: Seagrass is intended as a logical
+evolution of BPML ideas, but with a syntax that behaves like a real programming
+language instead of an XML workflow notation. The goal is to keep the process
+model visible while making it compact, composable, and executable on BEAM.
+
+That matters especially for complex processes that require explicit logical
+gateways. Real workflows often split into parallel branches, let those branches
+run independently, and then wait for them to complete before continuing. In
+Seagrass, those joins are not hidden in an engine-specific diagram node: they
+are expressed directly in the program structure through parallel branches and
+their enclosing sequential flow.
+
 Seagrass makes that structure explicit:
 
 - sequential steps are written on separate lines
 - parallel branches are written on the same level with `,`
 - grouped branches are written with `{ ... }`
+- gateways and joins are expressed by the structure of nested sequential and parallel blocks
 - the result still compiles to regular Erlang/BEAM artifacts
 
 The goal is not to replace Erlang or Elixir. The goal is to offer a smaller
